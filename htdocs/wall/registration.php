@@ -1,6 +1,7 @@
 <?php
     include("config.php");
-    if($_SERVER["REQUEST_METHOD"] == "POST" and !empty($_POST['username']) and !empty($_POST['password'])) {
+    if(isset($_POST['username']) and !empty($_POST['username']) 
+    and isset($_POST['password']) and !empty($_POST['password'])) {
         $username = mysql_real_escape_string($_POST['username']);
         $checkuser = "SELECT * FROM blog_admin WHERE username='$username'";
         $check = mysql_query($checkuser) or
