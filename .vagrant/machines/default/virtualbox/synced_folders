@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/home/aegis/Descargas/Vagrant VMs/vagrant-wall/htdocs","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/aegis/Descargas/Vagrant VMs/vagrant-wall","disabled":false}}}
