@@ -1,6 +1,9 @@
 <?php
     include("config.php");
     session_start();
+    if(!isset($_SESSION['login'])) {
+        header("Location: login.php");
+    }
     $username = $_SESSION['username'];
     $result = mysql_query("SELECT * FROM blog_posts ORDER BY id DESC") or
         die("No se pudieron consultar las entradas");

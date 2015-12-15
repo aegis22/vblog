@@ -1,13 +1,20 @@
 <?php
     include("config.php");
     if($_SERVER["REQUEST_METHOD"] == "POST" and !empty($_POST['username']) and !empty($_POST['password'])) {
-        $username = mysql_real_escape_string($_POST['username']); 
-        $password = mysql_real_escape_string($_POST['password']); 
-        $password = md5($password);
-        $sql = "INSERT INTO blog_admin(username, passcode) VALUES ('$username', '$password');";
-        $result = mysql_query($sql) or
-            die("Incapaz de escribir en la base de datos");
-        header("Location: login.php");
+        $username = mysql_real_escape_string($_POST['username']);
+        $checkuser = "SELECT * FROM blog_admin WHERE username='$username'";
+        $check = mysql_query($checkuser) or
+            die("Incapaz de leer de la base de datos");
+        if (mysql_num_rows($check) != 0) {
+            echo "Nombre actualmente en uso";
+        } else {
+            $password = mysql_real_escape_string($_POST['password']); 
+            $password = md5($password);
+            $sql = "INSERT INTO blog_admin(username, passcode) VALUES ('$username', '$password');";
+            $result = mysql_query($sql) or
+                die("Incapaz de escribir en la base de datos");
+            header("Location: login.php");
+        }
     }
 
 ?>
