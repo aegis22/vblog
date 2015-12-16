@@ -1,5 +1,5 @@
 <?php
-    include("../include/config.php");
+    include("../include/config.inc");
     if(isset($_POST['username']) and !empty($_POST['username']) 
     and isset($_POST['password']) and !empty($_POST['password'])) {
         $username = mysql_real_escape_string($_POST['username']);
@@ -14,7 +14,7 @@
             $sql = "INSERT INTO blog_admin(username, passcode) VALUES ('$username', '$password');";
             $result = mysql_query($sql) or
                 die("Incapaz de escribir en la base de datos");
-            header("Location: login.php");
+            header("Location: index.php");
         }
     }
 
@@ -40,7 +40,7 @@
         <input type="submit" value=" Registrarse "/><br />
     </form>
     <p> Volver a la página de login</p>
-    <form class="form" action="login.php" method="POST">
+    <form class="form" action="index.php" method="POST">
         <input type="submit" value="volver">
     </form>
 </body>

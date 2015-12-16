@@ -1,8 +1,8 @@
 <?php
-    include("../include/config.php");
+    include("../include/config.inc");
     session_start();
     if(!isset($_SESSION['login'])) {
-        header("Location: login.php");
+        header("Location: index.php");
     }
     $username = $_SESSION['username'];
     $result = mysql_query("SELECT * FROM blog_posts ORDER BY id DESC") or
