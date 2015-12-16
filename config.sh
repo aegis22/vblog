@@ -19,6 +19,20 @@ echo 'phpmyadmin phpmyadmin/mysql/admin-pass password 0000' | debconf-set-select
 echo 'phpmyadmin phpmyadmin/mysql/app-pass password 0000' | debconf-set-selections
 echo 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2' | debconf-set-selections
 apt-get install phpmyadmin -y
+# Enabling mod-rewrite
+a2enmod rewrite
+# Allowing Apache override to all
+cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    <Directory /var/www/html>
+        AllowOverride All
+    </Directory>
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
 # Restart Apache service
 service apache2 restart
 # Creating database settings
