@@ -1,5 +1,5 @@
 <?php
-    include("config.php");
+    include("../include/config.php");
     if(isset($_POST['username']) and !empty($_POST['username']) 
     and isset($_POST['password']) and !empty($_POST['password'])) {
         $username = mysql_real_escape_string($_POST['username']);
