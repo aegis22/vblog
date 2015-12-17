@@ -37,5 +37,5 @@ EOF
 service apache2 restart
 # Creating database settings
 echo "CREATE DATABASE db_blog" | mysql -u root -p0000
-echo "CREATE TABLE db_blog.blog_admin (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, username VARCHAR(20) UNIQUE, passcode VARCHAR(40))" | mysql -u root -p0000
+echo "CREATE TABLE db_blog.blog_admin (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, username VARCHAR(20) UNIQUE, passcode VARCHAR(40), numberposts INT UNSIGNED NOT NULL)" | mysql -u root -p0000
 echo "CREATE TABLE db_blog.blog_posts (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, autor VARCHAR(20), texto TEXT(200))" | mysql -u root -p0000

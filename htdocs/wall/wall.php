@@ -18,10 +18,13 @@
         mysql_real_escape_string($username)."','".
         mysql_real_escape_string($_POST['texto'])."')";
         $rins = mysql_query($qins) or
-            die("Couldnt insert text");
+            die("No se pudo insertar el texto");
+        $sql = "UPDATE blog_admin SET numberposts = numberposts + 1 WHERE username = '$username'";
+        $update = mysql_query($sql) or
+            die("No se pudo actualizar el número de posts");
     };
     
-    mysql_close($db);
+    //mysql_close($db);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -42,6 +45,20 @@
         <input type="text" name="texto">
         <input type="submit" value="enviar">
     </form>
+    <?php
+        $getnumposts = "SELECT numberposts FROM blog_admin WHERE username='$username'";
+        $get = mysql_query($getnumposts) or
+            die("Incapaz de leer el número de posts");
+        $row = mysql_fetch_array($get);
+        if ($row['numberposts'] == 0) {
+            $rank = "novato";
+        } else if ($row['numberposts'] > 0 and $row['numberposts'] < 6) {
+            $rank = "amateur";
+        } else {
+            $rank = "experto";
+        }
+        printf("Rango: %s", $rank);
+    ?>
     <p>Cerrar la cuenta</p>
     <form class="form" action="logout.php" method="POST">
         <input type="submit" value="salir">

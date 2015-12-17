@@ -11,7 +11,7 @@
         } else {
             $password = mysql_real_escape_string($_POST['password']); 
             $password = md5($password);
-            $sql = "INSERT INTO blog_admin(username, passcode) VALUES ('$username', '$password');";
+            $sql = "INSERT INTO blog_admin(username, passcode, numberposts) VALUES ('$username', '$password', 0);";
             $result = mysql_query($sql) or
                 die("Incapaz de escribir en la base de datos");
             header("Location: index.php");
