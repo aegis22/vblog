@@ -4,6 +4,11 @@
     $selected = $_GET['selected'];
     $result = mysql_query("SELECT * FROM blog_posts WHERE autor='$selected' ORDER BY id DESC") or
         die("No se pudieron consultar las entradas");
+        
+    $elements = array();
+    while ($row = mysql_fetch_array($result)) {
+        $elements[] = $row; 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +21,8 @@
 
 <body>
     <ul>
-        <?php while ($row = mysql_fetch_array($result)) { ?>
-            <li>Autor: <?= $row['autor'] ?>; Texto: <?= $row['texto'] ?></li>
+        <?php foreach ($elements as $post) { ?>
+            <li>Autor: <?= $post['autor'] ?>; Texto: <?= $post['texto'] ?></li>
         <?php } ?>
     </ul>
 	<form class="form" action="wall.php" method="POST">

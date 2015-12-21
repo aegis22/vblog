@@ -6,12 +6,26 @@
     }
     $username = mysql_real_escape_string($_SESSION['username']);
     
-    $result = mysql_query("SELECT * FROM blog_posts ORDER BY id DESC") or
+    // Getting posts from db
+    $result = mysql_query("SELECT * FROM blog_posts ORDER BY id DESC LIMIT 30") or
         die("No se pudieron consultar las entradas");
+    $elements = array();
+    while ($row = mysql_fetch_array($result)) {
+        $elements[] = $row; 
+    }
     
+    // Getting rank from user
     $getnumposts = "SELECT numberposts FROM blog_admin WHERE username='$username'";
     $get = mysql_query($getnumposts) or
         die("Incapaz de leer el número de posts");
+    $row = mysql_fetch_array($get);
+    if ($row['numberposts'] == 0) {
+        $rank = "novato";
+    } else if ($row['numberposts'] > 0 and $row['numberposts'] < 6) {
+        $rank = "amateur";
+    } else {
+        $rank = "experto";
+    }
     
     if(isset($_POST['texto']) and !empty($_POST['texto'])) {
         $text = mysql_real_escape_string($_POST['texto']);
@@ -36,9 +50,9 @@
 
 <body>
     <ul>
-        <?php while ($row = mysql_fetch_array($result)) { ?>
-            <li>Autor: <a href=postsbyuser.php?selected=<?= $row['autor'] ?>><?= $row['autor'] ?></a>
-                Texto: <?= $row{'texto'}?><br></li>
+        <?php foreach ($elements as $post) { ?>
+            <li>Autor: <a href=postsbyuser.php?selected=<?= $post['autor'] ?>><?= $post['autor'] ?></a>
+                Texto: <?= $post{'texto'}?><br></li>
         <?php } ?>
     </ul>
     <hr>
@@ -47,16 +61,7 @@
         <input type="text" name="texto">
         <input type="submit" value="enviar">
     </form>
-    <?php
-        $row = mysql_fetch_array($get);
-        if ($row['numberposts'] == 0) {
-            $rank = "novato";
-        } else if ($row['numberposts'] > 0 and $row['numberposts'] < 6) {
-            $rank = "amateur";
-        } else {
-            $rank = "experto";
-        }
-    ?>
+    
     Rango: <?=$rank?>
     <p>Cerrar la cuenta</p>
     <form class="form" action="logout.php" method="POST">
