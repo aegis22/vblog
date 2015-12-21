@@ -37,37 +37,7 @@
             die("No se pudo actualizar el número de posts");
     };
     
+    include("../templates/wall.phtml");
+    
     //mysql_close($db);
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="encoding">
-    <title>Muro de publicaciones</title>
-    <link rel="stylesheet" href="css/stylewall.css">
-</head>
-
-<body>
-    <ul>
-        <?php foreach ($elements as $post) { ?>
-            <li>Autor: <a href=postsbyuser.php?selected=<?= $post['autor'] ?>><?= $post['autor'] ?></a>
-                Texto: <?= $post{'texto'}?><br></li>
-        <?php } ?>
-    </ul>
-    <hr>
-	<form class="form" action="wall.php" method="POST">
-        <label for="texto">Texto:</label>
-        <input type="text" name="texto">
-        <input type="submit" value="enviar">
-    </form>
-    
-    Rango: <?=$rank?>
-    <p>Cerrar la cuenta</p>
-    <form class="form" action="logout.php" method="POST">
-        <input type="submit" value="salir">
-    </form>
-</body>
-
-</html>
-

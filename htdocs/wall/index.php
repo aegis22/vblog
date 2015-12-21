@@ -20,32 +20,7 @@
             echo "Usuario o contraseña incorrectos";
         }
     }
+    
+    include("../templates/login.phtml");
+    
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/stylewall.css">
-</head>
-
-<body>
-    <h1>Muro de publicaciones</h1>
-    <p>Bienvenido al muro de publicaciones. Por favor, introduzca su nombre y su contraseña:</p>
-    <form class="form" action="" method="post">
-        <label>Usuario:</label>
-        <input type="text" name="username"/><br />
-        <label>Contraseña:</label>
-        <input type="password" name="password"/><br/>
-        <input type="submit" value=" Login "/><br />
-    </form>
-    <p> Si no estás registrado, regístrate primero para entrar en nuestro blog:</p>
-     <form class="form" action="registration.php" method="POST">
-        <input type="submit" value="Registrarse">
-    </form>
-    <footer>Aegis 2015</footer>
-</body>
-
-</html>
-

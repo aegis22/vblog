@@ -1,5 +1,6 @@
-<?php
+<?php    
     include("../include/config.inc");
+    
     if(isset($_POST['username']) and !empty($_POST['username']) 
     and isset($_POST['password']) and !empty($_POST['password'])) {
         $username = mysql_real_escape_string($_POST['username']);
@@ -17,30 +18,7 @@
             header("Location: index.php");
         }
     }
-
+    
+    include("../templates/registration.phtml");
+    
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
-    <link rel="stylesheet" href="css/stylewall.css">
-</head>
-
-<body>
-    <h1>Registro</h1>
-    <form class="form" action="registration.php" method="post">
-        <label>Usuario:</label>
-        <input type="text" name="username"/><br />
-        <label>Contraseña:</label>
-        <input type="password" name="password"/><br/>
-        <input type="submit" value=" Registrarse "/><br />
-    </form>
-    <p> Volver a la página de login</p>
-    <form class="form" action="index.php" method="POST">
-        <input type="submit" value="volver">
-    </form>
-</body>
-
-</html>

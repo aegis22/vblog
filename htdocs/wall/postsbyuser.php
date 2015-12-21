@@ -9,25 +9,7 @@
     while ($row = mysql_fetch_array($result)) {
         $elements[] = $row; 
     }
+    
+    include("../templates/postsbyuser.phtml");
+    
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="encoding">
-    <title>Busqueda por nombre</title>
-    <link rel="stylesheet" href="css/stylewall.css">
-</head>
-
-<body>
-    <ul>
-        <?php foreach ($elements as $post) { ?>
-            <li>Autor: <?= $post['autor'] ?>; Texto: <?= $post['texto'] ?></li>
-        <?php } ?>
-    </ul>
-	<form class="form" action="wall.php" method="POST">
-        <input type="submit" value="volver">
-    </form>
-</body>
-
-</html>

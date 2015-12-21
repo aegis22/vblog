@@ -1,0 +1,32 @@
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    color: purple;
+    background-color: #d8da3d }
+footer {
+    padding:5px 0px;
+    clear: both;
+    text-align: center;
+}
+input, select, textarea { 
+    font-family:Arial, Helvetica, sans-serif; 
+    color:#595959; 
+    font-size:18px; 
+    margin:0; 
+    padding:0;}
+a { 
+    outline:none; 
+    text-decoration:none; 
+    color:#5d84a5;}
+a:hover { 
+    text-decoration:underline;}
+p { 
+    margin:0 0 10px; 
+    color:#595959;}
+h1 {
+    text-align: center;}
+h2,h3,h4,h5,h6 { 
+    font-weight:normal; 
+    margin:0; 
+    padding:0;}
+.form {
+    text-align: center}
