@@ -6,7 +6,6 @@
         $username = mysql_real_escape_string($_POST['username']);
         $checkuser = "SELECT * FROM blog_admin WHERE username='$username'";
 
-         /*
         $check = mysql_query($checkuser) or
             die("Incapaz de leer de la base de datos");
         if (mysql_num_rows($check) != 0) {
@@ -18,9 +17,9 @@
             $result = mysql_query($sql) or
                 die("Incapaz de escribir en la base de datos");
             header("Location: index.php");
-        }*/
+        }
 
-        try {
+        /*try {
             $chk = $dbh->query($checkuser);
             if ($chk->rowCount() != 0) {
                 echo "Nombre actualmente en uso";
@@ -33,7 +32,7 @@
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
-        }
+        }*/
         
     }
     

@@ -8,19 +8,19 @@
         $password = md5($password);
         $sql = "SELECT * FROM blog_admin WHERE username='$username' AND passcode='$password'";
         
-        /*$result = mysql_query($sql) or
+        $result = mysql_query($sql) or
             die("Incapaz de leer de la base de datos");
-        $count = mysql_num_rows($result);*/
+        $count = mysql_num_rows($result);
         
-        try {
+        /*try {
             $res = $dbh->query($sql);
             $cnt = $res->rowCount();
         } catch (PDOException $e) {
             echo $e->getMessage();
-        }
+        }*/
         
         // If result matched $username and $password, table row must be 1 row
-        if($cnt == 1) {
+        if($count == 1) {
             $_SESSION['username'] = $username;
             $_SESSION['login'] = true;
             header("Location: wall.php");
